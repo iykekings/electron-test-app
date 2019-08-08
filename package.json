@@ -19,11 +19,24 @@
       "packagerConfig": {},
       "makers": [
         {
-          "name": "@electron-forge/maker-dmg",
+          "name": "@electron-forge/maker-squirrel",
           "config": {
-            "background": "./assets/dmg-background.png",
-            "format": "ULFO"
+            "name": "electron_test_app"
           }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
         }
       ]
     }

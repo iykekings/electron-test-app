@@ -1,6 +1,9 @@
 const { ipcRenderer } = require('electron');
-console.log('loaded');
+
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
-  console.log(arg); // prints "pong"
+  console.log(args);
 });
+const [username, password] = [process.env.username, process.env.password];
+document.getElementById('username').innerHTML = `User: <b>${username}</b>`;
+document.getElementById('password').innerHTML = `Password: <b>${password}</b>`;
 ipcRenderer.send('asynchronous-message', 'ping');

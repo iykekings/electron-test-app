@@ -34,10 +34,15 @@ const createWindow = () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+  // process.env.username = 'username=abc';
+  // process.env.password = 'password=password_test';
   // some
   ipcMain.on('asynchronous-message', (event, arg) => {
     console.log(arg); // prints "ping"
-    event.reply('asynchronous-reply', 'pong');
+    event.reply(
+      'asynchronous-reply',
+      `${process.env.username},${process.env.password}`
+    );
   });
 };
 
