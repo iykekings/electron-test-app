@@ -44,6 +44,13 @@ const createWindow = () => {
       `${process.env.username},${process.env.password}`
     );
   });
+  ipcMain.on('get-password', (event, user) => {
+    event.returnValue = keytar.getPassword('ServiceName', user);
+  });
+
+  ipcMain.on('set-password', (event, user, pass) => {
+    event.returnValue = keytar.replacePassword('ServiceName', user, pass);
+  });
 };
 
 // This method will be called when Electron has finished
