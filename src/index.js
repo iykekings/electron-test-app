@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const { ipcMain } = require('electron');
+const keytar = require('keytar');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -44,12 +45,22 @@ const createWindow = () => {
       `${process.env.username},${process.env.password}`
     );
   });
-  ipcMain.on('get-password', (event, user) => {
-    event.returnValue = keytar.getPassword('ServiceName', user);
+  ipcMain.on('get-name', async (event, first) => {
+    try {
+      const lastName = await keytar.getPassword('ServiceName', first);
+      event.returnValue = lastName;
+    } catch (error) {
+      console.log('failed: ', error);
+    }
   });
 
-  ipcMain.on('set-password', (event, user, pass) => {
-    event.returnValue = keytar.replacePassword('ServiceName', user, pass);
+  ipcMain.on('set-name', async (event, first, last) => {
+    try {
+      const result = await keytar.setPassword('ServiceName', first, last);
+      event.returnValue = result;
+    } catch (error) {
+      console.log('failed: ', error);
+    }
   });
 };
 

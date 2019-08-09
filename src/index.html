@@ -9,7 +9,24 @@
   <body>
     <h1>💖 Hello World!</h1>
     <p>Welcome to your Electron application.</p>
+    <h2>From Env</h2>
     <p id="username"></p>
     <p id="password"></p>
+    <br />
+    <br />
+    <h2>Keytar Set Data</h2>
+    <form id="form">
+      <input type="text" id="in-fn" placeholder="First Name" />
+      <input type="text" id="in-ln" placeholder="Last Name" />
+      <p id="error" style="color:red"></p>
+      <button type="submit">submit</button>
+    </form>
+    <br />
+    <br />
+    <h2>Keytar Get Data</h2>
+    <input type="text" id="gt-fn" placeholder="First Name" />
+    <button id="get-btn">Get Name</button>
+    <span id="d-fn"></span>
+    <span id="d-ln"></span>
   </body>
 </html>
